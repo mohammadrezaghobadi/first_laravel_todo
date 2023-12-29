@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IndexTaskRequest;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
@@ -24,14 +25,17 @@ class TaskController extends Controller
         return redirect()->route('dashboard')->with('success', __('message.save'));
     }
 
-    public function index()
+    public function index(IndexTaskRequest $request)
     {
-        //todo : why you don't have validation ?
+        $validator = $request->validated();
+
         $task = auth()
             ->user()
             ->tasks()
-            ->latest('deadline') // todo: you have copied the queries !
-            ->filter(request(['search', 'select'])) // todo : don't copy!
+            ->latest('deadline')
+            ->filter()
+            ->select($validator)
+            ->search($validator)
             ->simplePaginate(5)
             ->withQueryString();
 
@@ -63,7 +67,7 @@ class TaskController extends Controller
 
     public function delete(Task $task)
     {
-        $task->delete(); // todo : implement a soft delete.
+        $task->delete();
         return back()->with('success',  __('messages.delete'));
     }
 }

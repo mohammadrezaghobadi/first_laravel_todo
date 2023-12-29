@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTaskRequest extends FormRequest
@@ -25,7 +26,7 @@ class StoreTaskRequest extends FormRequest
             'title' => ['required','max:100'],
             'task_status' => ['required','in:NotCompleted,Completed'],
             'description' => ['required'],
-            'deadline' => ['required','date']
+            'deadline' => ['required','date','before:today']
         ];
     }
 }

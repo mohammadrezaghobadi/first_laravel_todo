@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Enum\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTaskRequest extends FormRequest
+class IndexTaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +22,8 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required','max:100'],
-            'task_status' => ['required','in:NotCompleted,Completed'],
-            'description' => ['required'],
-            'deadline' => ['required','date']
+            'search' => ['nullable'],
+            'select' => ['nullable','in:NotCompleted,Completed'],
         ];
     }
 }

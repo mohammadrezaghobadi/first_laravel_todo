@@ -8,6 +8,9 @@
     align-items: center;
     justify-content: center;
 }
+.todo {
+    text-decoration-line: none;
+}
 .register{
     padding-left: 10px;
     padding-right: 10px;

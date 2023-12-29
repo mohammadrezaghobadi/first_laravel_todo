@@ -35,7 +35,7 @@
         <nav class="shadow">
             <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
-                    <div class="icon-flax flex items-center">
+                    <div class="flex items-center">
                         <a href="{!! auth()->user() ? url('/dashboard')  : route('login')  !!}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                                  class="bi bi-journal-plus border-r pr-3 border-r-black mr-5 text-black" viewBox="0 0 16 16">
@@ -50,25 +50,23 @@
                         </a>
                         <a href="{{ auth()->user() ? url('/dashboard') : '/'}}"><p class="text-black">ToDoList</p></a>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         @if (Route::has('login'))
-                            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                                @auth
-                                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                                @else
-                                    <a href="{{ route('login') }}"
-                                       class="ml-3 text-black uppercase text-xs font-bold login">
-                                        Log in
-                                    </a>
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                            @else
+                                <a href="{{ route('login') }}"
+                                   class="ml-3 text-black uppercase text-xs font-bold login">
+                                    Log in
+                                </a>
 
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}"
-                                           class="text-xs font-bold uppercase bg-blue-500 text-white p-2 ml-2 register">
-                                            Register
-                                        </a>
-                                    @endif
-                                @endauth
-                            </div>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}"
+                                       class="text-xs font-bold uppercase bg-blue-500 text-white p-2 ml-2 register">
+                                        Register
+                                    </a>
+                                @endif
+                            @endauth
                         @endif
                     </div>
                 </div>
