@@ -26,7 +26,7 @@ class UpdateTaskRequest extends FormRequest
             'title' => ['required','max:100'],
             'task_status' => ['required','in:NotCompleted,Completed'],
             'description' => ['required'],
-            'deadline' => ['required','date']
+            'deadline' => ['required','date','before:today']
         ];
     }
 }
