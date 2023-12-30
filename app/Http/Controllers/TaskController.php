@@ -22,7 +22,7 @@ class TaskController extends Controller
 
         Task::create($validator);
 
-        return redirect()->route('dashboard')->with('success', __('message.save'));
+        return redirect()->route('dashboard')->with('success', __('messages.save'));
     }
 
     public function index(IndexTaskRequest $request)
